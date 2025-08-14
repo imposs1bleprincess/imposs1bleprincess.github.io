@@ -1,8 +1,17 @@
 :root {
-    background-color: black;
+    color-scheme: light dark;
+    color: light-dark(#000000, #FFFFFF);
+    background-color: light-dark(#FFFFFF, #000000);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
 }
 
 body {
-    color: white;
+    margin: 0 auto;
+    max-width: 36em;
+    padding: 50px;
 }
- 
