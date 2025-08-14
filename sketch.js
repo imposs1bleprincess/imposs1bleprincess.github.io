@@ -5,13 +5,13 @@ function setup() {
   noStroke();
   
   // Create initial shapes
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 13; i++) {
     shapes.push(new BouncingShape());
   }
 }
 
 function draw() {
-  background(0);
+  background(210);
   
   for (let shape of shapes) {
     shape.update();
@@ -21,13 +21,13 @@ function draw() {
 
 class BouncingShape {
   constructor() {
-    this.size = random(30, 80);
+    this.size = random(65, 100);
     this.x = random(this.size, width - this.size);
     this.y = random(this.size, height - this.size);
-    this.xSpeed = random(2, 5) * (random() < 0.5 ? 1 : -1);
-    this.ySpeed = random(2, 5) * (random() < 0.5 ? 1 : -1);
+    this.xSpeed = random(3, 2) * (random() < 0.5 ? 1 : -1);
+    this.ySpeed = random(2, 3) * (random() < 0.5 ? 1 : -1);
     this.opacity = random(100, 255);
-    this.opacityChange = random(1, 3) * (random() < 0.5 ? 1 : -1);
+    this.opacityChange = random(3, 5) * (random() < 0.35 ? 1 : -1);
     this.shapeType = random() < 0.5 ? 'circle' : 'square'; // Either circle or square
   }
 
@@ -51,7 +51,7 @@ class BouncingShape {
   }
 
   display() {
-    fill(255, this.opacity);
+    fill(265, this.opacity);
     if (this.shapeType === 'circle') {
       ellipse(this.x, this.y, this.size);
     } else {
