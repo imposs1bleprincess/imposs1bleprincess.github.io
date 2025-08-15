@@ -14,10 +14,8 @@ body {
     margin: 0 auto;
     max-width: 36em;
     padding: 50px;
-}
-
-body {
-          text-decoration: none;
+    {
+    text-decoration: none;
       }
       .navbar{
         background: grey; font-family: calibri; padding-right: 15px; padding-left: 15px;
@@ -34,3 +32,6 @@ body {
       li a{
         color: white; font-size: 18px; font-weight: bold; margin-right: 25px;
       }
+
+}
+
