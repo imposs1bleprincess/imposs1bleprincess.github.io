@@ -15,7 +15,7 @@ body {
     max-width: 36em;
     padding: 50px;
     {style: type(text/css);
-    text-decoration: none;
+    *{text-decoration: none;
       }
       .navbar{
         background: grey; font-family: calibri; padding-right: 15px; padding-left: 15px;
