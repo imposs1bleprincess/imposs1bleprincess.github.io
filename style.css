@@ -16,3 +16,21 @@ body {
     padding: 50px;
 }
 
+*{
+          text-decoration: none;
+      }
+      .navbar{
+        background: rgb(183, 171, 171); font-family: calibri; padding-right: 15px; padding-left: 15px;
+        }
+      .navdiv{
+        display: flex; justify-content: space-evenly;
+      }
+      .logo a{
+        font-size: 35px; font-weight: 600; color: black; 
+      }
+      li{ 
+        list-style: none; display: inline-block;
+      }
+      li a{
+        color: black; font-size: 18px; font-weight: bold; text-align: center; margin-right: 20px;
+      }
