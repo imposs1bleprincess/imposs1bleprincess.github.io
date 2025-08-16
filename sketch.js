@@ -1,7 +1,8 @@
 let shapes = [];
 
 function setup() {
-  createCanvas(530, 400);
+  let cnv = createCanvas(600, 400);
+  cnv.parent('sketch-container');
   noFill();
   strokeWeight(2);
 
@@ -73,5 +74,5 @@ class GlitchShape {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(600, 400);
 }
