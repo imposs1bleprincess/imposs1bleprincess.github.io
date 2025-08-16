@@ -1,7 +1,7 @@
 let shapes = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(530, 400);
   noFill();
   strokeWeight(2);
 
