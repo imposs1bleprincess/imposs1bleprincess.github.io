@@ -1,61 +1,77 @@
 let shapes = [];
 
 function setup() {
-  createCanvas(600, 600);
-  noStroke();
-  
-  // Create initial shapes
-  for (let i = 0; i < 13; i++) {
-    shapes.push(new BouncingShape());
+  createCanvas(windowWidth, windowHeight);
+  noFill();
+  strokeWeight(2);
+
+  // Generate initial shapes
+  for (let i = 0; i < 100; i++) {
+    shapes.push(new GlitchShape());
   }
 }
 
 function draw() {
-  background(210);
-  
+  background(10, 10, 20, 25); // Slight trail for ghosting effect
+
   for (let shape of shapes) {
     shape.update();
     shape.display();
   }
 }
 
-class BouncingShape {
+class GlitchShape {
   constructor() {
-    this.size = random(65, 100);
-    this.x = random(this.size, width - this.size);
-    this.y = random(this.size, height - this.size);
-    this.xSpeed = random(3, 2) * (random() < 0.5 ? 1 : -1);
-    this.ySpeed = random(2, 3) * (random() < 0.5 ? 1 : -1);
-    this.opacity = random(100, 255);
-    this.opacityChange = random(3, 5) * (random() < 0.35 ? 1 : -1);
-    this.shapeType = random() < 0.5 ? 'circle' : 'square'; // Either circle or square
+    this.reset();
+  }
+
+  reset() {
+    this.x = random(width);
+    this.y = random(height);
+    this.size = random(10, 100);
+    this.depth = random(0.5, 2.5); // Simulate distance (z-depth)
+    this.shapeType = floor(random(3)); // 0 = rect, 1 = ellipse, 2 = triangle
+    this.opacity = random(30, 150);
+    this.xOffset = random(-2, 2);
+    this.yOffset = random(-2, 2);
+    this.glitchTimer = int(random(10, 60));
   }
 
   update() {
-    this.x += this.xSpeed;
-    this.y += this.ySpeed;
+    // Simulate glitch shake
+    this.x += this.xOffset * this.depth * 0.2;
+    this.y += this.yOffset * this.depth * 0.2;
 
-    // Check for wall collisions and reverse direction
-    if (this.x < this.size || this.x > width - this.size) {
-      this.xSpeed *= -1;
-    }
-    if (this.y < this.size || this.y > height - this.size) {
-      this.ySpeed *= -1;
-    }
-
-    // Update opacity fluctuation
-    this.opacity += this.opacityChange;
-    if (this.opacity > 255 || this.opacity < 50) {
-      this.opacityChange *= -1;
+    this.glitchTimer--;
+    if (this.glitchTimer <= 0) {
+      this.reset();
     }
   }
 
   display() {
-    fill(265, this.opacity);
-    if (this.shapeType === 'circle') {
-      ellipse(this.x, this.y, this.size);
-    } else {
-      rect(this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
+    push();
+    translate(this.x, this.y);
+    scale(this.depth);
+    stroke(255, this.opacity);
+
+    switch (this.shapeType) {
+      case 0:
+        rectMode(CENTER);
+        rect(0, 0, this.size, this.size);
+        break;
+      case 1:
+        ellipse(0, 0, this.size, this.size);
+        break;
+      case 2:
+        let s = this.size;
+        triangle(-s / 2, s / 2, 0, -s / 2, s / 2, s / 2);
+        break;
     }
+
+    pop();
   }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
