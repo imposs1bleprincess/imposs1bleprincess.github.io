@@ -10,8 +10,8 @@
     }
 }
 
-h1 { border: 3px solid black;
-    border-radius: 5px;
+h1 { border: 3px outset  rgb(183, 171, 171);
+    border-radius: 3px;
 
 }
 
@@ -19,6 +19,18 @@ body {
     margin: 0 auto;
     max-width: 36em;
     padding: 50px;
+}
+
+.icons{
+  text-align: center;
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.footer-para{
+  text-align: center;
+  justify-content: space-evenly;
+  display: flex;
 }
 
 *{
