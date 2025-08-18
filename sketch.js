@@ -4,16 +4,16 @@ function setup() {
   let cnv = createCanvas(600, 400);
   cnv.parent('sketch-container');
   noFill();
-  strokeWeight(2);
+  strokeWeight(1.75);
 
   // Generate initial shapes
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 55; i++) {
     shapes.push(new GlitchShape());
   }
 }
 
 function draw() {
-  background(10, 10, 20, 25); // Slight trail for ghosting effect
+  background(15, 10, 85, 15); // Slight trail for ghosting effect
 
   for (let shape of shapes) {
     shape.update();
@@ -32,15 +32,15 @@ class GlitchShape {
     this.size = random(10, 100);
     this.depth = random(0.5, 2.5); // Simulate distance (z-depth)
     this.shapeType = floor(random(3)); // 0 = rect, 1 = ellipse, 2 = triangle
-    this.opacity = random(30, 150);
-    this.xOffset = random(-2, 2);
-    this.yOffset = random(-2, 2);
+    this.opacity = random(30, 100);
+    this.xOffset = random(-5, 5);
+    this.yOffset = random(-1, 1);
     this.glitchTimer = int(random(10, 60));
   }
 
   update() {
     // Simulate glitch shake
-    this.x += this.xOffset * this.depth * 0.2;
+    this.x += this.xOffset * this.depth * 0.4;
     this.y += this.yOffset * this.depth * 0.2;
 
     this.glitchTimer--;
@@ -53,7 +53,7 @@ class GlitchShape {
     push();
     translate(this.x, this.y);
     scale(this.depth);
-    stroke(255, this.opacity);
+    stroke(195, this.opacity);
 
     switch (this.shapeType) {
       case 0:
@@ -65,7 +65,7 @@ class GlitchShape {
         break;
       case 2:
         let s = this.size;
-        triangle(-s / 2, s / 2, 0, -s / 2, s / 2, s / 2);
+        triangle(-s / 2, s / -2, 0, -s / -2, s / 2, s / -2);
         break;
     }
 
